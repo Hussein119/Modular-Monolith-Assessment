@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "5dc2ae13-5720-46ec-9974-059a67316acd",
+		"name": "Doctor Appointment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25848842",
+		"_collection_link": "https://winter-moon-655637.postman.co/workspace/Team-Workspace~3caed531-1245-4ae7-8945-b3188e76f404/collection/25848842-5dc2ae13-5720-46ec-9974-059a67316acd?action=share&source=collection_link&creator=25848842"
+	},
+	"item": [
+		{
+			"name": "Add Slot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\r\n        \"time\": \"2023-12-25T10:30:00\",\r\n        \"doctorName\": \"Dr. Hussein\",\r\n        \"isReserved\": true,\r\n        \"cost\": 100.0\r\n    },\r\n    {\r\n        \"id\": \"123e4567-e89b-12d3-a456-426614174002\",\r\n        \"time\": \"2023-12-25T10:30:00\",\r\n        \"doctorName\": \"Dr. Hassan\",\r\n        \"isReserved\": false,\r\n        \"cost\": 100.0\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/slots",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"slots"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Available Slots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/slots/Available",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"slots",
+						"Available"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Available Slots",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/slots/Available",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"slots",
+								"Available"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Jan 2025 18:56:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\n        \"time\": \"2023-12-25T10:30:00\",\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 100,\n        \"reserved\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get All Slots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/slots",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"slots"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Slots",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/slots",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"slots"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Jan 2025 18:56:15 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\n        \"time\": \"2023-12-25T10:30:00\",\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 100,\n        \"reserved\": true\n    },\n    {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174002\",\n        \"time\": \"2023-12-25T10:30:00\",\n        \"doctorName\": \"Dr. Hassan\",\n        \"cost\": 100,\n        \"reserved\": false\n    }\n]"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}
