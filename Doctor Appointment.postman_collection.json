@@ -8,152 +8,250 @@
 	},
 	"item": [
 		{
-			"name": "Add Slot",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\r\n        \"time\": \"2023-12-25T10:30:00\",\r\n        \"doctorName\": \"Dr. Hussein\",\r\n        \"isReserved\": true,\r\n        \"cost\": 100.0\r\n    },\r\n    {\r\n        \"id\": \"123e4567-e89b-12d3-a456-426614174002\",\r\n        \"time\": \"2023-12-25T10:30:00\",\r\n        \"doctorName\": \"Dr. Hassan\",\r\n        \"isReserved\": false,\r\n        \"cost\": 100.0\r\n    }\r\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{URL}}/slots",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"slots"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Available Slots",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URL}}/slots/Available",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"slots",
-						"Available"
-					]
-				}
-			},
-			"response": [
+			"name": "Doctor Availability",
+			"item": [
 				{
-					"name": "Get Available Slots",
-					"originalRequest": {
-						"method": "GET",
+					"name": "Add Slot",
+					"request": {
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"doctorName\": \"Dr. Hussein\",\r\n        \"isReserved\": false,\r\n        \"cost\": 100.0\r\n    },\r\n    {\r\n        \"doctorName\": \"Dr. Hussein\",\r\n        \"isReserved\": false,\r\n        \"cost\": 150.0\r\n    },\r\n    {\r\n        \"doctorName\": \"Dr. Hussein\",\r\n        \"isReserved\": false,\r\n        \"cost\": 200.0\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{URL}}/slots/Available",
+							"raw": "{{URL}}/api/doctor-slots",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"slots",
-								"Available"
+								"api",
+								"doctor-slots"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 02 Jan 2025 18:56:07 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+					"response": []
+				},
+				{
+					"name": "Get All Slots",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/doctor-slots",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"doctor-slots"
+							]
 						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\n        \"time\": \"2023-12-25T10:30:00\",\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 100,\n        \"reserved\": true\n    }\n]"
+					},
+					"response": [
+						{
+							"name": "Get All Slots",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/doctor-slots",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"doctor-slots"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Jan 2025 00:03:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 100,\n        \"time\": \"2025-01-11T00:02:06.468+00:00\",\n        \"doctorId\": \"6781b4fe33bc031f85f65817\",\n        \"reserved\": true\n    },\n    {\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 150,\n        \"time\": \"2025-01-11T00:02:06.679+00:00\",\n        \"doctorId\": \"6781b4fe33bc031f85f65818\",\n        \"reserved\": false\n    },\n    {\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 200,\n        \"time\": \"2025-01-11T00:02:06.795+00:00\",\n        \"doctorId\": \"6781b4fe33bc031f85f65819\",\n        \"reserved\": false\n    }\n]"
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "Get All Slots",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{URL}}/slots",
-					"host": [
-						"{{URL}}"
-					],
-					"path": [
-						"slots"
-					]
-				}
-			},
-			"response": [
+			"name": "Appointment Booking",
+			"item": [
 				{
-					"name": "Get All Slots",
-					"originalRequest": {
+					"name": "Get Available Slots",
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/slots",
+							"raw": "{{URL}}/api/appointments/available-slots",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"slots"
+								"api",
+								"appointments",
+								"available-slots"
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 02 Jan 2025 18:56:15 GMT"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"name": "Get Available Slots",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/appointments/available-slots",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"appointments",
+										"available-slots"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Jan 2025 00:02:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 150,\n        \"time\": \"2025-01-11T00:02:06.679+00:00\",\n        \"doctorId\": \"6781b4fe33bc031f85f65818\",\n        \"reserved\": false\n    },\n    {\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 200,\n        \"time\": \"2025-01-11T00:02:06.795+00:00\",\n        \"doctorId\": \"6781b4fe33bc031f85f65819\",\n        \"reserved\": false\n    }\n]"
 						}
-					],
-					"cookie": [],
-					"body": "[\n    {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\n        \"time\": \"2023-12-25T10:30:00\",\n        \"doctorName\": \"Dr. Hussein\",\n        \"cost\": 100,\n        \"reserved\": true\n    },\n    {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174002\",\n        \"time\": \"2023-12-25T10:30:00\",\n        \"doctorName\": \"Dr. Hassan\",\n        \"cost\": 100,\n        \"reserved\": false\n    }\n]"
+					]
+				},
+				{
+					"name": "Book Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"slotId\": \"6781b4fe33bc031f85f65817\", \r\n  \"patientId\": \"987e6543-e21b-12d3-a456-426614174000\",\r\n  \"patientName\": \"Ayman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/appointments/book",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"appointments",
+								"book"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Book Appointment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"slotId\": \"6781b4fe33bc031f85f65817\", \r\n  \"patientId\": \"987e6543-e21b-12d3-a456-426614174000\",\r\n  \"patientName\": \"Ayman\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/api/appointments/book",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"appointments",
+										"book"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Jan 2025 00:02:35 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"reservedAt\": \"2025-01-11T00:02:35.014+00:00\",\n    \"slotId\": \"6781b4fe33bc031f85f65817\",\n    \"patientName\": \"Ayman\",\n    \"patientId\": \"6781b51b33bc031f85f6581a\"\n}"
+						}
+					]
 				}
 			]
 		}
