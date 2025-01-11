@@ -2,15 +2,16 @@ package doctorappointment.appointmentbooking.Application;
 
 
 import doctorappointment.appointmentbooking.Domain.Appointment;
+import doctorappointment.appointmentconfirmation.Event.AppointmentBookedEvent;
 import doctorappointment.doctoravailability.Entity.Slot;
 import doctorappointment.appointmentbooking.Infrastructure.AppointmentRepository;
 import doctorappointment.doctoravailability.Repository.SlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
@@ -20,6 +21,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
 
     @Override
     public List<Slot> viewAvailableSlots() {
@@ -43,6 +47,10 @@ public class AppointmentServiceImpl implements AppointmentService {
         // Create and save the appointment
         Appointment appointment = new Appointment(slotId, patientName, new Date());
         appointmentRepository.save(appointment);
+
+        // Publish the event
+        eventPublisher.publishEvent(new AppointmentBookedEvent(this, appointment));
+
         return appointment;
     }
 }

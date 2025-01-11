@@ -4,9 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.UUID;
 
 @Document(collection = "appointments")
 public class Appointment {
@@ -15,10 +13,11 @@ public class Appointment {
     private String id; // Let MongoDB generate this as ObjectId
 
     @CreatedDate // Automatically populate this field on creation
-    private Date reservedAt;
+    private Date CreatedAt;
 
     private String slotId;
     private String patientName;
+    private Date reservedAt;
 
     public Appointment() {
     }
@@ -29,12 +28,16 @@ public class Appointment {
         this.reservedAt = reservedAt;
     }
 
-    public String getSlotId() {
-        return slotId;
+    public String getId() {
+        return id;
     }
 
-    public String getPatientId() {
-        return id;
+    public Date getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public String getSlotId() {
+        return slotId;
     }
 
     public String getPatientName() {
@@ -45,8 +48,15 @@ public class Appointment {
         return reservedAt;
     }
 
+    public void setSlotId(String slotId) {
+        this.slotId = slotId;
+    }
+
     public void setPatientName(String patientName) {
         this.patientName = patientName;
     }
 
+    public void setReservedAt(Date reservedAt) {
+        this.reservedAt = reservedAt;
+    }
 }

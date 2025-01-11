@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Document(collection = "slots")
 public class Slot {
@@ -29,7 +28,7 @@ public class Slot {
         return time;
     }
 
-    public String getDoctorId() {
+    public String getSlotId() {
         return id;
     }
 
