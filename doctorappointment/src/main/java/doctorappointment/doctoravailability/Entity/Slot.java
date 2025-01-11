@@ -1,39 +1,36 @@
 package doctorappointment.doctoravailability.Entity;
 
-import java.time.LocalDateTime;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
 import java.util.UUID;
 
+@Document(collection = "slots")
 public class Slot {
-    private UUID id;
-    private LocalDateTime time;
+    @Id
+    private String id; // Let MongoDB generate this as ObjectId
+
+    @CreatedDate // Automatically populate this field on creation
+    private Date time;
+
     private String doctorName;
     private boolean isReserved;
     private double cost;
 
-    // Constructor
-    public Slot(UUID id, LocalDateTime time, String doctorName, boolean isReserved, double cost) {
-        this.id = id;
-        this.time = time;
+    public Slot(String doctorName, boolean isReserved, double cost) {
         this.doctorName = doctorName;
         this.isReserved = isReserved;
         this.cost = cost;
     }
 
-    // Getters and Setters
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public String getDoctorId() {
+        return id;
     }
 
     public String getDoctorName() {

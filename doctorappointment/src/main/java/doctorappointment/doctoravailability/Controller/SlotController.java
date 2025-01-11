@@ -3,27 +3,30 @@ package doctorappointment.doctoravailability.Controller;
 import doctorappointment.doctoravailability.Entity.Slot;
 import doctorappointment.doctoravailability.Service.SlotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/slots")
+@RequestMapping("/api/doctor-slots")
 public class SlotController {
+
     @Autowired
     private SlotService slotService;
 
-    @GetMapping("/Available")
-    public List<Slot> getSlots() {
-        return slotService.getAvailableSlots();
-    }
-
+    // Get all slots
     @GetMapping("")
-    public List<Slot> getAllSlots() {
-        return slotService.getSlots();
+    public ResponseEntity<List<Slot>> getAllSlots() {
+        List<Slot> allSlots = slotService.getAllSlots();
+        return new ResponseEntity<>(allSlots, HttpStatus.OK);
     }
 
+    // Add one or more slots
     @PostMapping
-    public void addSlot(@RequestBody Slot[] slots) {
+    public ResponseEntity<String> addSlots(@RequestBody Slot[] slots) {
         slotService.addSlots(slots);
+        return new ResponseEntity<>("Slots added successfully", HttpStatus.CREATED);
     }
 }

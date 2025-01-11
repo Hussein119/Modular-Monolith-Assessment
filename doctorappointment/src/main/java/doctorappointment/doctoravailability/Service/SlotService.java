@@ -8,21 +8,16 @@ import java.util.List;
 
 @Service
 public class SlotService {
+
     @Autowired
     private SlotRepository slotRepository;
 
-    public List<Slot> getAvailableSlots() {
-        return slotRepository.findByDoctorIdAndIsReservedFalse();
+    // Get all slots
+    public List<Slot> getAllSlots() {
+        return slotRepository.findAll();
     }
 
-    public List<Slot> getSlots() {
-        return slotRepository.getAllDoctors();
-    }
-
-    public void addSlot(Slot slot) {
-        slotRepository.save(slot);
-    }
-
+    // Add multiple slots
     public void addSlots(Slot[] slots) {
         for (Slot slot : slots) {
             slotRepository.save(slot);

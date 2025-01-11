@@ -4,7 +4,8 @@
 
 - Controller: Expose REST APIs.
 - Service: Business logic for managing slots.
-- Repository: Data persistence (in-memory list).
+- Repository: Data persistence (use shared database integration style).
+  - NoSQL -> Mongoodb
 - Entity: Slot class.
 
 > Controller depends on Service.
