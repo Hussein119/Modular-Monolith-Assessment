@@ -10,18 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/slots")
+@RequestMapping("/api/doctor-slots")
 public class SlotController {
 
     @Autowired
     private SlotService slotService;
-
-    // Get all available slots
-    @GetMapping("/available")
-    public ResponseEntity<List<Slot>> getAvailableSlots() {
-        List<Slot> availableSlots = slotService.getAvailableSlots();
-        return new ResponseEntity<>(availableSlots, HttpStatus.OK);
-    }
 
     // Get all slots
     @GetMapping("")
