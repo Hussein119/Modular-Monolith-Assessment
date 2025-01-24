@@ -2,12 +2,21 @@ package doctorappointment.appointmentbooking.Presentation;
 
 public class BookAppointmentRequest {
 
+    private String doctorId;
     private String slotId;
     private String patientName;
+    private String patientId;
 
-    // Getters and Setters
+    public String getDoctorId() {
+        return doctorId;
+    }
+
     public String getSlotId() {
         return slotId;
+    }
+
+    public String getPatientId() {
+        return patientId;
     }
 
     public String getPatientName() {

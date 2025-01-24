@@ -2,10 +2,11 @@ package doctorappointment.appointmentbooking.Application;
 
 
 import doctorappointment.appointmentbooking.Domain.Appointment;
-import doctorappointment.appointmentconfirmation.Event.AppointmentBookedEvent;
 import doctorappointment.doctoravailability.Entity.Slot;
 import doctorappointment.appointmentbooking.Infrastructure.AppointmentRepository;
 import doctorappointment.doctoravailability.Repository.SlotRepository;
+import doctorappointment.appointmentconfirmation.Event.AppointmentBookedEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment bookAppointment(String slotId, String patientName) {
+    public Appointment bookAppointment(String doctorId,String slotId,String patientId, String patientName) {
         // Check if the slot is available
         Slot slot = slotRepository.findById(slotId)
                 .orElseThrow(() -> new RuntimeException("Slot not found"));
@@ -45,10 +46,10 @@ public class AppointmentServiceImpl implements AppointmentService {
         slotRepository.save(slot);
 
         // Create and save the appointment
-        Appointment appointment = new Appointment(slotId, patientName, new Date());
+        Appointment appointment = new Appointment(slotId, patientName, new Date(), false);
         appointmentRepository.save(appointment);
 
-        // Publish the event
+        // Publish the event to send a notification
         eventPublisher.publishEvent(new AppointmentBookedEvent(this, appointment));
 
         return appointment;

@@ -10,22 +10,32 @@ import java.util.Date;
 public class Appointment {
 
     @Id
-    private String id; // Let MongoDB generate this as ObjectId
+    private String id;
 
-    @CreatedDate // Automatically populate this field on creation
+    @CreatedDate
     private Date CreatedAt;
 
     private String slotId;
     private String patientName;
     private Date reservedAt;
+    private boolean isCompleted;
 
     public Appointment() {
     }
 
-    public Appointment(String slotId, String patientName, Date reservedAt) {
+    public Appointment(String slotId, String patientName, Date reservedAt, boolean isCompleted) {
         this.slotId = slotId;
         this.patientName = patientName;
         this.reservedAt = reservedAt;
+        this.isCompleted = isCompleted;
+    }
+
+    public void markAsCompleted() {
+        this.isCompleted = true;
+    }
+
+    public void cancel() {
+        this.isCompleted = false;
     }
 
     public String getId() {
@@ -48,6 +58,18 @@ public class Appointment {
         return reservedAt;
     }
 
+    public boolean getStatus() {
+        return isCompleted;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        CreatedAt = createdAt;
+    }
+
     public void setSlotId(String slotId) {
         this.slotId = slotId;
     }
@@ -58,5 +80,9 @@ public class Appointment {
 
     public void setReservedAt(Date reservedAt) {
         this.reservedAt = reservedAt;
+    }
+
+    public void setStatus(boolean status) {
+        this.isCompleted = status;
     }
 }

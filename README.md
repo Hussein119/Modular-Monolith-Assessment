@@ -126,9 +126,9 @@ This module is part of a **Doctor Appointment Booking System** and is responsibl
 
 ---
 
-## **Entity Details**
+### **Entity Details**
 
-### **Appointment Entity**
+#### **Appointment Entity**
 
 The `Appointment` entity represents a booked appointment. It has the following fields:
 
@@ -142,7 +142,7 @@ The `Appointment` entity represents a booked appointment. It has the following f
 
 ---
 
-## **API Endpoints**
+### **API Endpoints**
 
 ### **1. View Available Slots**
 
@@ -192,11 +192,68 @@ The `Appointment` entity represents a booked appointment. It has the following f
 
 ---
 
-## **Automatic Timestamp**
+### **Automatic Timestamp**
 
 The `reservedAt` field is automatically populated when an appointment is booked. This is achieved using Spring Data MongoDB's `@CreatedDate` annotation and enabling auditing with `@EnableMongoAuditing`.
 
 ---
+
+## Appointment Confirmation Module
+
+This module is part of a **Doctor Appointment Booking System** and is responsible for sending confirmation notifications to patients and doctors once an appointment is booked. It follows a **three-tier architecture** to ensure separation of concerns, modularity, and scalability. The module is built using **Spring Boot** and leverages **Spring Events** for decoupled event handling.
+
+---
+
+### **Features**
+
+1. **Confirmation Notification**:
+   - Sends a confirmation notification (as a log message) to the patient and doctor after an appointment is booked.
+2. **Event-Driven Architecture**:
+   - Uses **Spring Events** to decouple the appointment booking logic from the confirmation logic.
+3. **Three-Tier Architecture**:
+   - Separates the application into **Presentation**, **Business Logic**, and **Data Access** layers for better maintainability.
+
+### **Three-Tier Architecture**
+
+#### **1. Presentation Layer**
+
+- **Controller**: `AppointmentConfirmationController`
+  - Exposes REST endpoints for triggering confirmation notifications.
+- **API Endpoint**:
+  - `POST /api/appointments/confirm`: Triggers a confirmation notification.
+
+#### **2. Business Logic Layer**
+
+- **Service**: `AppointmentConfirmationService`
+  - Handles the logic for generating and logging confirmation messages.
+- **Event Listener**: `AppointmentBookedEventListener`
+  - Listens for `AppointmentBookedEvent` and triggers the confirmation process.
+
+#### **3. Data Access Layer**
+
+- **Repository**: `SlotRepository`
+  - Fetches slot details (e.g., doctor's name) from the database.
+
+---
+
+### **How It Works**
+
+1. When an appointment is booked, the `AppointmentBookedEvent` is published.
+2. The `AppointmentBookedEventListener` listens for the event and fetches the doctor's name using the `slotId`.
+3. The `AppointmentConfirmationService` generates and logs the confirmation message.
+
+---
+
+### **Event Handling**
+
+The module uses **Spring Events** to decouple the appointment booking logic from the confirmation logic.
+
+#### **Event Flow**
+
+1. **Event Publishing**:
+   - The `AppointmentServiceImpl` publishes an `AppointmentBookedEvent` when an appointment is booked.
+2. **Event Listening**:
+   - The `AppointmentBookedEventListener` listens for the event and calls the `AppointmentConfirmationService` to log the confirmation message.
 
 ### **Technologies Used**
 
@@ -253,6 +310,9 @@ The module includes unit and integration tests to ensure functionality.
 
 - Add authentication and authorization.
 - Add pagination and filtering for listing slots.
+- Replace the log message with real notifications (e.g., email, SMS).
+- Add more details to the confirmation message (e.g., appointment ID, cost).
+- Implement error handling for failed notifications.
 
 ---
 

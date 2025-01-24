@@ -24,7 +24,9 @@ public class AppointmentController {
     @PostMapping("/book")
     public ResponseEntity<Appointment> bookAppointment(@RequestBody BookAppointmentRequest request) {
         Appointment appointment = appointmentService.bookAppointment(
+                request.getDoctorId(),
                 request.getSlotId(),
+                request.getPatientId(),
                 request.getPatientName()
         );
         return ResponseEntity.ok(appointment);
