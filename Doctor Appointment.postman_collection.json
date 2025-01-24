@@ -177,7 +177,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"slotId\": \"6781b4fe33bc031f85f65817\", \r\n  \"patientId\": \"987e6543-e21b-12d3-a456-426614174000\",\r\n  \"patientName\": \"Ayman\"\r\n}",
+							"raw": "{\r\n  \"slotId\": \"6781b4fe33bc031f85f65819\", \r\n  \"patientName\": \"Mohamed1155\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -252,6 +252,119 @@
 							"body": "{\n    \"reservedAt\": \"2025-01-11T00:02:35.014+00:00\",\n    \"slotId\": \"6781b4fe33bc031f85f65817\",\n    \"patientName\": \"Ayman\",\n    \"patientId\": \"6781b51b33bc031f85f6581a\"\n}"
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "Doctor Appointment Management:",
+			"item": [
+				{
+					"name": "Upcoming Appointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/doctor/appointments/upcoming",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"doctor",
+								"appointments",
+								"upcoming"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upcoming Appointments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/api/doctor/appointments/upcoming",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"api",
+										"doctor",
+										"appointments",
+										"upcoming"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 17:57:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"6793d3476bbbc675da2b42ad\",\n        \"slotId\": \"6781b4fe33bc031f85f65819\",\n        \"patientName\": \"Mohamed1155\",\n        \"reservedAt\": \"2025-01-24T17:52:07.331+00:00\",\n        \"status\": false,\n        \"createdAt\": \"2025-01-24T17:52:07.335+00:00\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Mark Appointment As Completed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/doctor/appointments/6793cbdfe0a76210f4bebc77/complete",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"doctor",
+								"appointments",
+								"6793cbdfe0a76210f4bebc77",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Appointment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/doctor/appointments/6793d049f7b5734d3a06e830",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"doctor",
+								"appointments",
+								"6793d049f7b5734d3a06e830"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
